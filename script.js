@@ -1,6 +1,25 @@
 const calculationsTracker = document.querySelector(".calculations-tracker");
+
+// botoes digitos
+const btn9 = document.querySelector("#btn-9");
+const btn8 = document.querySelector("#btn-8");
 const btn7 = document.querySelector("#btn-7");
+const btn6 = document.querySelector("#btn-6");
+const btn5 = document.querySelector("#btn-5");
+const btn4 = document.querySelector("#btn-4");
+const btn3 = document.querySelector("#btn-3");
+const btn2 = document.querySelector("#btn-2");
+const btn1 = document.querySelector("#btn-1");
+const btn0 = document.querySelector("#btn-0");
+
+// botoes das operacoes
 const btnx = document.querySelector("#btn-x");
+const btnPlus = document.querySelector("#btn-plus");
+const btnMinus = document.querySelector("#btn-minus");
+const btnDivide = document.querySelector("#btn-divide");
+
+// botoes para limpar a tela
+const btnCE = document.querySelector("#btn-ce");
 
 const calculationResult = document.querySelector(".calculation-result");
 const btnEqual = document.querySelector("#btn-equal");
@@ -9,8 +28,9 @@ let numberOne = 0;
 let numberTwo = 0;
 let operator;
 
-let arr = [];
-let holder = 0;
+const arr = [];
+let holder;
+let resultado;
 
 function add(numberOne, numberTwo) {
   return numberOne + numberTwo;
@@ -47,24 +67,106 @@ function operate(numberOne, numberTwo, operator) {
   return result;
 }
 
-btn7.addEventListener("click", () => {
-  let teste = Number(btn7.value);
-  arr.push(teste);
+// Numeric Button Events
+
+btn9.addEventListener("click", () => {
+  let buttonValue = Number(btn9.value);
+  arr.push(buttonValue);
   calculationsTracker.textContent = arr.join("");
+});
+
+btn8.addEventListener("click", () => {
+  let buttonValue = Number(btn8.value);
+  arr.push(buttonValue);
+  calculationsTracker.textContent = arr.join("");
+});
+
+btn7.addEventListener("click", () => {
+  let buttonValue = Number(btn7.value);
+  arr.push(buttonValue);
+  calculationsTracker.textContent = arr.join("");
+});
+
+btn6.addEventListener("click", () => {
+  let buttonValue = Number(btn6.value);
+  arr.push(buttonValue);
+  calculationsTracker.textContent = arr.join("");
+});
+
+btn5.addEventListener("click", () => {
+  let buttonValue = Number(btn5.value);
+  arr.push(buttonValue);
+  calculationsTracker.textContent = arr.join("");
+});
+
+btn4.addEventListener("click", () => {
+  let buttonValue = Number(btn4.value);
+  arr.push(buttonValue);
+  calculationsTracker.textContent = arr.join("");
+});
+
+btn3.addEventListener("click", () => {
+  let buttonValue = Number(btn3.value);
+  arr.push(buttonValue);
+  calculationsTracker.textContent = arr.join("");
+});
+
+btn2.addEventListener("click", () => {
+  let buttonValue = Number(btn2.value);
+  arr.push(buttonValue);
+  calculationsTracker.textContent = arr.join("");
+});
+
+btn1.addEventListener("click", () => {
+  let buttonValue = Number(btn1.value);
+  arr.push(buttonValue);
+  calculationsTracker.textContent = arr.join("");
+});
+
+btn0.addEventListener("click", () => {
+  let buttonValue = Number(btn0.value);
+  arr.push(buttonValue);
+  calculationsTracker.textContent = arr.join("");
+});
+
+// Operation Button Events
+
+btnMinus.addEventListener("click", () => {
+  holder = Number(arr.join(""));
+  arr.splice(0, arr.length);
+  operator = btnMinus.value;
+});
+
+btnPlus.addEventListener("click", () => {
+  holder = Number(arr.join(""));
+  arr.splice(0, arr.length);
+  operator = btnPlus.value;
 });
 
 btnx.addEventListener("click", () => {
   holder = Number(arr.join(""));
   arr.splice(0, arr.length);
-  operator = "*";
+  operator = btnx.value;
+});
+
+btnDivide.addEventListener("click", () => {
+  holder = Number(arr.join(""));
+  arr.splice(0, arr.length);
+  operator = btnDivide.value;
 });
 
 btnEqual.addEventListener("click", () => {
   numberTwo = holder;
   numberOne = Number(arr.join(""));
   holder = 0;
-  arr = [];
-  let resultado = operate(numberOne, numberTwo, operator);
+  arr.splice(0, arr.length);
+  resultado = operate(numberOne, numberTwo, operator);
   calculationResult.textContent = resultado;
   operator = "";
+});
+
+// Clear Button
+
+btnCE.addEventListener("click", () => {
+  return location.reload();
 });
