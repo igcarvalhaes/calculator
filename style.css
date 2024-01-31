@@ -31,10 +31,13 @@ body {
   width: 288px;
   height: 86px;
   text-align: right;
+  /* background-color: #292828; */
   color: #6b6b6b;
   display: flex;
   flex-direction: column;
   gap: 20px;
+  /* box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+    rgba(0, 0, 0, 0.22) 0px 15px 12px; */
 }
 
 .calculations-tracker {
