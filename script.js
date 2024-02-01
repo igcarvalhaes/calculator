@@ -21,6 +21,11 @@ const btnDivide = document.querySelector("#btn-divide");
 // botoes para limpar a tela
 const btnCE = document.querySelector("#btn-ce");
 
+// botao % e virgula e mudar sinal
+const btnPercent = document.querySelector("#percent");
+const btnVirgula = document.querySelector("#btn-virgula");
+const btnChangeSignal = document.querySelector("#btn-changeSignal");
+
 const calculationResult = document.querySelector(".calculation-result");
 const btnEqual = document.querySelector("#btn-equal");
 
@@ -133,15 +138,35 @@ btn0.addEventListener("click", () => {
   calculationsTracker.textContent = arr.join("");
 });
 
+btnVirgula.addEventListener("click", () => {
+  let buttonValue = btnVirgula.value;
+  if (!arr.includes(buttonValue)) {
+    arr.push(buttonValue);
+    calculationsTracker.textContent = arr.join("");
+  }
+});
+
+btnChangeSignal.addEventListener("click", () => {
+  let buttonValue = "-";
+  if (!arr.includes(buttonValue)) {
+    arr.unshift(buttonValue);
+    calculationsTracker.textContent = arr.join("");
+  } else {
+    arr.shift();
+    calculationsTracker.textContent = arr.join("");
+  }
+});
+
 // Operation Button Events
 
 btnMinus.addEventListener("click", () => {
   if (numberOne !== undefined) {
     holder = Number(arr.join(""));
-    numberOne = operate(numberOne, holder, operator);
+    numberTwo = holder;
+    numberOne = operate(numberOne, numberTwo, operator);
     calculationResult.textContent = numberOne;
     operator = btnMinus.value;
-    holder = 0;
+    holder = numberTwo;
     arr.splice(0, arr.length);
   } else {
     numberOne = Number(arr.join(""));
@@ -153,7 +178,8 @@ btnMinus.addEventListener("click", () => {
 btnPlus.addEventListener("click", () => {
   if (numberOne !== undefined) {
     holder = Number(arr.join(""));
-    numberOne = operate(numberOne, holder, operator);
+    numberTwo = holder;
+    numberOne = operate(numberOne, numberTwo, operator);
     calculationResult.textContent = numberOne;
     operator = btnPlus.value;
     holder = 0;
@@ -168,7 +194,8 @@ btnPlus.addEventListener("click", () => {
 btnx.addEventListener("click", () => {
   if (numberOne !== undefined) {
     holder = Number(arr.join(""));
-    numberOne = operate(numberOne, holder, operator);
+    numberTwo = holder;
+    numberOne = operate(numberOne, numberTwo, operator);
     calculationResult.textContent = numberOne;
     operator = btnx.value;
     holder = 0;
@@ -183,7 +210,8 @@ btnx.addEventListener("click", () => {
 btnDivide.addEventListener("click", () => {
   if (numberOne !== undefined) {
     holder = Number(arr.join(""));
-    numberOne = operate(numberOne, holder, operator);
+    numberTwo = holder;
+    numberOne = operate(numberOne, numberTwo, operator);
     calculationResult.textContent = numberOne;
     operator = btnDivide.value;
     holder = 0;
@@ -196,15 +224,19 @@ btnDivide.addEventListener("click", () => {
 });
 
 btnEqual.addEventListener("click", () => {
-  numberTwo = Number(arr.join(""));
+  if (arr.length === 0) {
+    calculationResult.textContent = resultado;
+  } else {
+    numberTwo = Number(arr.join(""));
 
-  holder = 0;
-  arr.splice(0, arr.length);
+    holder = 0;
+    arr.splice(0, arr.length);
 
-  resultado = operate(numberOne, numberTwo, operator);
-  calculationResult.textContent = resultado;
+    resultado = operate(numberOne, numberTwo, operator);
+    calculationResult.textContent = resultado;
 
-  operator = "";
+    operator = "";
+  }
 });
 
 // Clear Button
