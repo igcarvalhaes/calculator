@@ -85,10 +85,15 @@ body {
   border-radius: 50px;
   background-color: #2d2a37;
   color: white;
+  font-weight: bold;
   font-size: 20px;
   border: none;
   box-shadow: inset rgba(126, 124, 124, 0.05) 1px 25px 38px,
     rgba(0, 0, 0, 0.22) 2px 3px 2px;
+}
+
+.purple-text {
+  color: #6423cc;
 }
 
 .key-btn:last-child {
@@ -101,5 +106,9 @@ body {
 }
 
 .key-btn:last-child:hover {
-  background-color: #502d88;
+  background-color: #6519df;
+}
+
+.purple-text {
+  color: #6423cc;
 }

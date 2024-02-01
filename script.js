@@ -24,8 +24,8 @@ const btnCE = document.querySelector("#btn-ce");
 const calculationResult = document.querySelector(".calculation-result");
 const btnEqual = document.querySelector("#btn-equal");
 
-let numberOne = 0;
-let numberTwo = 0;
+let numberOne;
+let numberTwo;
 let operator;
 
 const arr = [];
@@ -45,7 +45,11 @@ function multiply(numberOne, numberTwo) {
 }
 
 function divide(numberOne, numberTwo) {
-  return numberOne / numberTwo;
+  if (numberTwo != 0) {
+    return numberOne / numberTwo;
+  } else {
+    return "Erro!";
+  }
 }
 
 function operate(numberOne, numberTwo, operator) {
@@ -132,36 +136,74 @@ btn0.addEventListener("click", () => {
 // Operation Button Events
 
 btnMinus.addEventListener("click", () => {
-  holder = Number(arr.join(""));
-  arr.splice(0, arr.length);
-  operator = btnMinus.value;
+  if (numberOne !== undefined) {
+    holder = Number(arr.join(""));
+    numberOne = operate(numberOne, holder, operator);
+    calculationResult.textContent = numberOne;
+    operator = btnMinus.value;
+    holder = 0;
+    arr.splice(0, arr.length);
+  } else {
+    numberOne = Number(arr.join(""));
+    arr.splice(0, arr.length);
+    operator = btnMinus.value;
+  }
 });
 
 btnPlus.addEventListener("click", () => {
-  holder = Number(arr.join(""));
-  arr.splice(0, arr.length);
-  operator = btnPlus.value;
+  if (numberOne !== undefined) {
+    holder = Number(arr.join(""));
+    numberOne = operate(numberOne, holder, operator);
+    calculationResult.textContent = numberOne;
+    operator = btnPlus.value;
+    holder = 0;
+    arr.splice(0, arr.length);
+  } else {
+    numberOne = Number(arr.join(""));
+    arr.splice(0, arr.length);
+    operator = btnPlus.value;
+  }
 });
 
 btnx.addEventListener("click", () => {
-  holder = Number(arr.join(""));
-  arr.splice(0, arr.length);
-  operator = btnx.value;
+  if (numberOne !== undefined) {
+    holder = Number(arr.join(""));
+    numberOne = operate(numberOne, holder, operator);
+    calculationResult.textContent = numberOne;
+    operator = btnx.value;
+    holder = 0;
+    arr.splice(0, arr.length);
+  } else {
+    numberOne = Number(arr.join(""));
+    arr.splice(0, arr.length);
+    operator = btnx.value;
+  }
 });
 
 btnDivide.addEventListener("click", () => {
-  holder = Number(arr.join(""));
-  arr.splice(0, arr.length);
-  operator = btnDivide.value;
+  if (numberOne !== undefined) {
+    holder = Number(arr.join(""));
+    numberOne = operate(numberOne, holder, operator);
+    calculationResult.textContent = numberOne;
+    operator = btnDivide.value;
+    holder = 0;
+    arr.splice(0, arr.length);
+  } else {
+    numberOne = Number(arr.join(""));
+    arr.splice(0, arr.length);
+    operator = btnDivide.value;
+  }
 });
 
 btnEqual.addEventListener("click", () => {
-  numberTwo = holder;
-  numberOne = Number(arr.join(""));
+  numberTwo = Number(arr.join(""));
+
   holder = 0;
   arr.splice(0, arr.length);
+
   resultado = operate(numberOne, numberTwo, operator);
   calculationResult.textContent = resultado;
+
   operator = "";
 });
 
