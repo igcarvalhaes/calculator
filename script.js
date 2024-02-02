@@ -21,6 +21,9 @@ const btnDivide = document.querySelector("#btn-divide");
 // botoes para limpar a tela
 const btnCE = document.querySelector("#btn-ce");
 
+// limpar ultimo botao apertado
+const btnC = document.querySelector("#btn-c");
+
 // botao % e virgula e mudar sinal
 const btnPercent = document.querySelector("#percent");
 const btnVirgula = document.querySelector("#btn-virgula");
@@ -38,22 +41,27 @@ let holder;
 let resultado;
 
 function add(numberOne, numberTwo) {
-  return numberOne + numberTwo;
+  let resultadoOperacao = numberOne + numberTwo;
+  return (resultadoOperacao = Number(resultadoOperacao.toFixed(7)));
 }
 
 function subtract(numberOne, numberTwo) {
-  return numberOne - numberTwo;
+  let resultadoOperacao = numberOne - numberTwo;
+  return (resultadoOperacao = Number(resultadoOperacao.toFixed(7)));
 }
 
 function multiply(numberOne, numberTwo) {
-  return numberOne * numberTwo;
+  let resultadoOperacao = numberOne * numberTwo;
+  return (resultadoOperacao = Number(resultadoOperacao.toFixed(7)));
 }
 
 function divide(numberOne, numberTwo) {
+  let resultadoOperacao;
   if (numberTwo != 0) {
-    return numberOne / numberTwo;
+    resultadoOperacao = numberOne / numberTwo;
+    return (resultadoOperacao = Number(resultadoOperacao.toFixed(7)));
   } else {
-    return "Erro!";
+    return "Erro";
   }
 }
 
@@ -76,66 +84,86 @@ function operate(numberOne, numberTwo, operator) {
   return result;
 }
 
-// Numeric Button Events
+// Evento dos botoes numericos
 
 btn9.addEventListener("click", () => {
   let buttonValue = Number(btn9.value);
-  arr.push(buttonValue);
-  calculationsTracker.textContent = arr.join("");
+  if (arr.length <= 8) {
+    arr.push(buttonValue);
+    calculationsTracker.textContent = arr.join("");
+  }
 });
 
 btn8.addEventListener("click", () => {
   let buttonValue = Number(btn8.value);
-  arr.push(buttonValue);
-  calculationsTracker.textContent = arr.join("");
+  if (arr.length <= 8) {
+    arr.push(buttonValue);
+    calculationsTracker.textContent = arr.join("");
+  }
 });
 
 btn7.addEventListener("click", () => {
   let buttonValue = Number(btn7.value);
-  arr.push(buttonValue);
-  calculationsTracker.textContent = arr.join("");
+  if (arr.length <= 8) {
+    arr.push(buttonValue);
+    calculationsTracker.textContent = arr.join("");
+  }
 });
 
 btn6.addEventListener("click", () => {
   let buttonValue = Number(btn6.value);
-  arr.push(buttonValue);
-  calculationsTracker.textContent = arr.join("");
+  if (arr.length <= 8) {
+    arr.push(buttonValue);
+    calculationsTracker.textContent = arr.join("");
+  }
 });
 
 btn5.addEventListener("click", () => {
   let buttonValue = Number(btn5.value);
-  arr.push(buttonValue);
-  calculationsTracker.textContent = arr.join("");
+  if (arr.length <= 8) {
+    arr.push(buttonValue);
+    calculationsTracker.textContent = arr.join("");
+  }
 });
 
 btn4.addEventListener("click", () => {
   let buttonValue = Number(btn4.value);
-  arr.push(buttonValue);
-  calculationsTracker.textContent = arr.join("");
+  if (arr.length <= 8) {
+    arr.push(buttonValue);
+    calculationsTracker.textContent = arr.join("");
+  }
 });
 
 btn3.addEventListener("click", () => {
   let buttonValue = Number(btn3.value);
-  arr.push(buttonValue);
-  calculationsTracker.textContent = arr.join("");
+  if (arr.length <= 8) {
+    arr.push(buttonValue);
+    calculationsTracker.textContent = arr.join("");
+  }
 });
 
 btn2.addEventListener("click", () => {
   let buttonValue = Number(btn2.value);
-  arr.push(buttonValue);
-  calculationsTracker.textContent = arr.join("");
+  if (arr.length <= 8) {
+    arr.push(buttonValue);
+    calculationsTracker.textContent = arr.join("");
+  }
 });
 
 btn1.addEventListener("click", () => {
   let buttonValue = Number(btn1.value);
-  arr.push(buttonValue);
-  calculationsTracker.textContent = arr.join("");
+  if (arr.length <= 8) {
+    arr.push(buttonValue);
+    calculationsTracker.textContent = arr.join("");
+  }
 });
 
 btn0.addEventListener("click", () => {
   let buttonValue = Number(btn0.value);
-  arr.push(buttonValue);
-  calculationsTracker.textContent = arr.join("");
+  if (arr.length <= 8) {
+    arr.push(buttonValue);
+    calculationsTracker.textContent = arr.join("");
+  }
 });
 
 btnVirgula.addEventListener("click", () => {
@@ -157,13 +185,28 @@ btnChangeSignal.addEventListener("click", () => {
   }
 });
 
-// Operation Button Events
+btnPercent.addEventListener("click", () => {
+  let valorArray = Number(arr.join(""));
+  console.log(valorArray);
+  let calcularPercent = 100;
+  arr.splice(0, arr.length);
+  arr.push(operate(valorArray, calcularPercent, "/"));
+  calculationResult.textContent = arr;
+});
+
+// Evento para os botoes de operaçoes + - * / e =
 
 btnMinus.addEventListener("click", () => {
+  let numberOneStringify;
+
   if (numberOne !== undefined) {
     holder = Number(arr.join(""));
     numberTwo = holder;
     numberOne = operate(numberOne, numberTwo, operator);
+
+    numberOneStringify = numberOne.toString().slice(0, 8);
+    numberOne = Number(numberOneStringify);
+
     calculationResult.textContent = numberOne;
     operator = btnMinus.value;
     holder = numberTwo;
@@ -176,10 +219,16 @@ btnMinus.addEventListener("click", () => {
 });
 
 btnPlus.addEventListener("click", () => {
+  let numberOneStringify;
+
   if (numberOne !== undefined) {
     holder = Number(arr.join(""));
     numberTwo = holder;
     numberOne = operate(numberOne, numberTwo, operator);
+
+    numberOneStringify = numberOne.toString().slice(0, 8);
+    numberOne = Number(numberOneStringify);
+
     calculationResult.textContent = numberOne;
     operator = btnPlus.value;
     holder = 0;
@@ -192,10 +241,16 @@ btnPlus.addEventListener("click", () => {
 });
 
 btnx.addEventListener("click", () => {
+  let numberOneStringify;
+
   if (numberOne !== undefined) {
     holder = Number(arr.join(""));
     numberTwo = holder;
     numberOne = operate(numberOne, numberTwo, operator);
+
+    numberOneStringify = numberOne.toString().slice(0, 8);
+    numberOne = Number(numberOneStringify);
+
     calculationResult.textContent = numberOne;
     operator = btnx.value;
     holder = 0;
@@ -208,10 +263,16 @@ btnx.addEventListener("click", () => {
 });
 
 btnDivide.addEventListener("click", () => {
+  let numberOneStringify;
+
   if (numberOne !== undefined) {
     holder = Number(arr.join(""));
     numberTwo = holder;
     numberOne = operate(numberOne, numberTwo, operator);
+
+    numberOneStringify = numberOne.toString().slice(0, 8);
+    numberOne = Number(numberOneStringify);
+
     calculationResult.textContent = numberOne;
     operator = btnDivide.value;
     holder = 0;
@@ -224,6 +285,8 @@ btnDivide.addEventListener("click", () => {
 });
 
 btnEqual.addEventListener("click", () => {
+  let resultadoStringify;
+
   if (arr.length === 0) {
     calculationResult.textContent = resultado;
   } else {
@@ -233,14 +296,23 @@ btnEqual.addEventListener("click", () => {
     arr.splice(0, arr.length);
 
     resultado = operate(numberOne, numberTwo, operator);
+
+    resultadoStringify = resultado.toString().slice(0, 8);
+    resultado = Number(resultadoStringify);
+
     calculationResult.textContent = resultado;
 
     operator = "";
   }
 });
 
-// Clear Button
-
+// Botao para limpar tudo
 btnCE.addEventListener("click", () => {
   return location.reload();
+});
+
+// Limpar ultimo elemento apertado
+btnC.addEventListener("click", () => {
+  arr.pop();
+  calculationsTracker.textContent = arr.join("");
 });
