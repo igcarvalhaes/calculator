@@ -204,7 +204,7 @@ btnMinus.addEventListener("click", () => {
     numberTwo = holder;
     numberOne = operate(numberOne, numberTwo, operator);
 
-    numberOneStringify = numberOne.toString().slice(0, 8);
+    numberOneStringify = numberOne.toString().slice(0, 19);
     numberOne = Number(numberOneStringify);
 
     calculationResult.textContent = numberOne;
@@ -226,7 +226,7 @@ btnPlus.addEventListener("click", () => {
     numberTwo = holder;
     numberOne = operate(numberOne, numberTwo, operator);
 
-    numberOneStringify = numberOne.toString().slice(0, 8);
+    numberOneStringify = numberOne.toString().slice(0, 19);
     numberOne = Number(numberOneStringify);
 
     calculationResult.textContent = numberOne;
@@ -248,7 +248,7 @@ btnx.addEventListener("click", () => {
     numberTwo = holder;
     numberOne = operate(numberOne, numberTwo, operator);
 
-    numberOneStringify = numberOne.toString().slice(0, 8);
+    numberOneStringify = numberOne.toString().slice(0, 19);
     numberOne = Number(numberOneStringify);
 
     calculationResult.textContent = numberOne;
@@ -270,7 +270,7 @@ btnDivide.addEventListener("click", () => {
     numberTwo = holder;
     numberOne = operate(numberOne, numberTwo, operator);
 
-    numberOneStringify = numberOne.toString().slice(0, 8);
+    numberOneStringify = numberOne.toString().slice(0, 19);
     numberOne = Number(numberOneStringify);
 
     calculationResult.textContent = numberOne;
@@ -297,7 +297,7 @@ btnEqual.addEventListener("click", () => {
 
     resultado = operate(numberOne, numberTwo, operator);
 
-    resultadoStringify = resultado.toString().slice(0, 8);
+    resultadoStringify = resultado.toString().slice(0, 19);
     resultado = Number(resultadoStringify);
 
     calculationResult.textContent = resultado;
