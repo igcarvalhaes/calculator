@@ -57,11 +57,11 @@ function multiply(numberOne, numberTwo) {
 
 function divide(numberOne, numberTwo) {
   let resultadoOperacao;
-  if (numberTwo != 0) {
+  if (numberTwo !== 0) {
     resultadoOperacao = numberOne / numberTwo;
     return (resultadoOperacao = Number(resultadoOperacao.toFixed(7)));
   } else {
-    return "Erro";
+    return (resultadoOperacao = "Erro");
   }
 }
 
@@ -298,7 +298,7 @@ btnEqual.addEventListener("click", () => {
     resultado = operate(numberOne, numberTwo, operator);
 
     resultadoStringify = resultado.toString().slice(0, 19);
-    resultado = Number(resultadoStringify);
+    resultado = resultadoStringify;
 
     calculationResult.textContent = resultado;
 
