@@ -84,208 +84,40 @@ function operate(numberOne, numberTwo, operator) {
   return result;
 }
 
-// Evento dos botoes numericos
-
-btn9.addEventListener("click", () => {
-  let buttonValue = Number(btn9.value);
+// Adiciona os botoes no array e tb no visor da tela da calculadora
+function addBotaoNaCalculadora(btn) {
+  let buttonValue = Number(btn.value);
   if (arr.length <= 8) {
     arr.push(buttonValue);
     calculationsTracker.textContent = arr.join("");
   }
-});
+}
 
-btn8.addEventListener("click", () => {
-  let buttonValue = Number(btn8.value);
-  if (arr.length <= 8) {
-    arr.push(buttonValue);
-    calculationsTracker.textContent = arr.join("");
-  }
-});
-
-btn7.addEventListener("click", () => {
-  let buttonValue = Number(btn7.value);
-  if (arr.length <= 8) {
-    arr.push(buttonValue);
-    calculationsTracker.textContent = arr.join("");
-  }
-});
-
-btn6.addEventListener("click", () => {
-  let buttonValue = Number(btn6.value);
-  if (arr.length <= 8) {
-    arr.push(buttonValue);
-    calculationsTracker.textContent = arr.join("");
-  }
-});
-
-btn5.addEventListener("click", () => {
-  let buttonValue = Number(btn5.value);
-  if (arr.length <= 8) {
-    arr.push(buttonValue);
-    calculationsTracker.textContent = arr.join("");
-  }
-});
-
-btn4.addEventListener("click", () => {
-  let buttonValue = Number(btn4.value);
-  if (arr.length <= 8) {
-    arr.push(buttonValue);
-    calculationsTracker.textContent = arr.join("");
-  }
-});
-
-btn3.addEventListener("click", () => {
-  let buttonValue = Number(btn3.value);
-  if (arr.length <= 8) {
-    arr.push(buttonValue);
-    calculationsTracker.textContent = arr.join("");
-  }
-});
-
-btn2.addEventListener("click", () => {
-  let buttonValue = Number(btn2.value);
-  if (arr.length <= 8) {
-    arr.push(buttonValue);
-    calculationsTracker.textContent = arr.join("");
-  }
-});
-
-btn1.addEventListener("click", () => {
-  let buttonValue = Number(btn1.value);
-  if (arr.length <= 8) {
-    arr.push(buttonValue);
-    calculationsTracker.textContent = arr.join("");
-  }
-});
-
-btn0.addEventListener("click", () => {
-  let buttonValue = Number(btn0.value);
-  if (arr.length <= 8) {
-    arr.push(buttonValue);
-    calculationsTracker.textContent = arr.join("");
-  }
-});
-
-btnVirgula.addEventListener("click", () => {
-  let buttonValue = btnVirgula.value;
-  if (!arr.includes(buttonValue)) {
-    arr.push(buttonValue);
-    calculationsTracker.textContent = arr.join("");
-  }
-});
-
-btnChangeSignal.addEventListener("click", () => {
-  let buttonValue = "-";
-  if (!arr.includes(buttonValue)) {
-    arr.unshift(buttonValue);
-    calculationsTracker.textContent = arr.join("");
-  } else {
-    arr.shift();
-    calculationsTracker.textContent = arr.join("");
-  }
-});
-
-btnPercent.addEventListener("click", () => {
-  let valorArray = Number(arr.join(""));
-  console.log(valorArray);
-  let calcularPercent = 100;
-  arr.splice(0, arr.length);
-  arr.push(operate(valorArray, calcularPercent, "/"));
-  calculationResult.textContent = arr;
-});
-
-// Evento para os botoes de operaçoes + - * / e =
-
-btnMinus.addEventListener("click", () => {
-  let numberOneStringify;
+// funcao para calcular de acordo com o operador
+function addOperador(btn) {
+  // let numberOneStringify;
 
   if (numberOne !== undefined) {
     holder = Number(arr.join(""));
     numberTwo = holder;
     numberOne = operate(numberOne, numberTwo, operator);
 
-    numberOneStringify = numberOne.toString().slice(0, 19);
-    numberOne = Number(numberOneStringify);
+    // numberOneStringify = numberOne.toString().slice(0, 19);
+    // numberOne = numberOneStringify;
 
     calculationResult.textContent = numberOne;
-    operator = btnMinus.value;
+    operator = btn.value;
     holder = numberTwo;
     arr.splice(0, arr.length);
   } else {
     numberOne = Number(arr.join(""));
     arr.splice(0, arr.length);
-    operator = btnMinus.value;
+    operator = btn.value;
   }
-});
+}
 
-btnPlus.addEventListener("click", () => {
-  let numberOneStringify;
-
-  if (numberOne !== undefined) {
-    holder = Number(arr.join(""));
-    numberTwo = holder;
-    numberOne = operate(numberOne, numberTwo, operator);
-
-    numberOneStringify = numberOne.toString().slice(0, 19);
-    numberOne = Number(numberOneStringify);
-
-    calculationResult.textContent = numberOne;
-    operator = btnPlus.value;
-    holder = 0;
-    arr.splice(0, arr.length);
-  } else {
-    numberOne = Number(arr.join(""));
-    arr.splice(0, arr.length);
-    operator = btnPlus.value;
-  }
-});
-
-btnx.addEventListener("click", () => {
-  let numberOneStringify;
-
-  if (numberOne !== undefined) {
-    holder = Number(arr.join(""));
-    numberTwo = holder;
-    numberOne = operate(numberOne, numberTwo, operator);
-
-    numberOneStringify = numberOne.toString().slice(0, 19);
-    numberOne = Number(numberOneStringify);
-
-    calculationResult.textContent = numberOne;
-    operator = btnx.value;
-    holder = 0;
-    arr.splice(0, arr.length);
-  } else {
-    numberOne = Number(arr.join(""));
-    arr.splice(0, arr.length);
-    operator = btnx.value;
-  }
-});
-
-btnDivide.addEventListener("click", () => {
-  let numberOneStringify;
-
-  if (numberOne !== undefined) {
-    holder = Number(arr.join(""));
-    numberTwo = holder;
-    numberOne = operate(numberOne, numberTwo, operator);
-
-    numberOneStringify = numberOne.toString().slice(0, 19);
-    numberOne = Number(numberOneStringify);
-
-    calculationResult.textContent = numberOne;
-    operator = btnDivide.value;
-    holder = 0;
-    arr.splice(0, arr.length);
-  } else {
-    numberOne = Number(arr.join(""));
-    arr.splice(0, arr.length);
-    operator = btnDivide.value;
-  }
-});
-
-btnEqual.addEventListener("click", () => {
-  let resultadoStringify;
+function equal() {
+  // let resultadoStringify;
 
   if (arr.length === 0) {
     calculationResult.textContent = resultado;
@@ -297,22 +129,209 @@ btnEqual.addEventListener("click", () => {
 
     resultado = operate(numberOne, numberTwo, operator);
 
-    resultadoStringify = resultado.toString().slice(0, 19);
-    resultado = resultadoStringify;
+    // resultadoStringify = resultado.toString().slice(0, 19);
+    // resultado = resultadoStringify;
 
     calculationResult.textContent = resultado;
 
     operator = "";
   }
-});
+}
 
-// Botao para limpar tudo
-btnCE.addEventListener("click", () => {
-  return location.reload();
-});
-
-// Limpar ultimo elemento apertado
-btnC.addEventListener("click", () => {
+function clearLastElement() {
   arr.pop();
   calculationsTracker.textContent = arr.join("");
+}
+
+function clearAllElements() {
+  return location.reload();
+}
+
+function addVirgula() {
+  let buttonValue = btnVirgula.value;
+  if (!arr.includes(buttonValue)) {
+    arr.push(buttonValue);
+    calculationsTracker.textContent = arr.join("");
+  }
+}
+
+function changeSignal() {
+  let buttonValue = "-";
+  if (!arr.includes(buttonValue)) {
+    arr.unshift(buttonValue);
+    calculationsTracker.textContent = arr.join("");
+  } else {
+    arr.shift();
+    calculationsTracker.textContent = arr.join("");
+  }
+}
+
+function percent() {
+  let valorArray = Number(arr.join(""));
+  console.log(valorArray);
+  let calcularPercent = 100;
+  arr.splice(0, arr.length);
+  arr.push(operate(valorArray, calcularPercent, "/"));
+  calculationResult.textContent = arr;
+}
+
+// Evento dos botoes numericos
+btn9.addEventListener("click", () => addBotaoNaCalculadora(btn9));
+
+btn8.addEventListener("click", () => addBotaoNaCalculadora(btn8));
+
+btn7.addEventListener("click", () => addBotaoNaCalculadora(btn7));
+
+btn6.addEventListener("click", () => addBotaoNaCalculadora(btn6));
+
+btn5.addEventListener("click", () => addBotaoNaCalculadora(btn5));
+
+btn4.addEventListener("click", () => addBotaoNaCalculadora(btn4));
+
+btn3.addEventListener("click", () => addBotaoNaCalculadora(btn3));
+
+btn2.addEventListener("click", () => addBotaoNaCalculadora(btn2));
+
+btn1.addEventListener("click", () => addBotaoNaCalculadora(btn1));
+
+btn0.addEventListener("click", () => addBotaoNaCalculadora(btn0));
+
+btnVirgula.addEventListener("click", () => addVirgula());
+
+btnChangeSignal.addEventListener("click", () => changeSignal());
+
+btnPercent.addEventListener("click", () => percent());
+
+// Evento para os botoes de operaçoes + - * / e =
+btnMinus.addEventListener("click", () => addOperador(btnMinus));
+
+btnPlus.addEventListener("click", () => addOperador(btnPlus));
+
+btnx.addEventListener("click", () => addOperador(btnx));
+
+btnDivide.addEventListener("click", () => addOperador(btnDivide));
+
+btnEqual.addEventListener("click", () => equal());
+
+// Botao para limpar tudo
+btnCE.addEventListener("click", () => clearAllElements());
+
+// Limpar ultimo elemento apertado
+btnC.addEventListener("click", () => clearLastElement());
+
+// Eventos de teclado
+window.addEventListener("keydown", (e) => {
+  switch (e.code) {
+    case "Numpad9":
+      addBotaoNaCalculadora(btn9);
+      break;
+    case "Numpad8":
+      addBotaoNaCalculadora(btn8);
+      break;
+    case "Numpad7":
+      addBotaoNaCalculadora(btn7);
+      break;
+    case "Numpad6":
+      addBotaoNaCalculadora(btn6);
+      break;
+    case "Numpad5":
+      addBotaoNaCalculadora(btn5);
+      break;
+    case "Numpad4":
+      addBotaoNaCalculadora(btn4);
+      break;
+    case "Numpad3":
+      addBotaoNaCalculadora(btn3);
+      break;
+    case "Numpad2":
+      addBotaoNaCalculadora(btn2);
+      break;
+    case "Numpad1":
+      addBotaoNaCalculadora(btn1);
+      break;
+    case "Numpad0":
+      addBotaoNaCalculadora(btn0);
+    case "NumpadAdd":
+      addOperador(btnPlus);
+      break;
+    case "NumpadSubtract":
+      if (e.shiftKey) {
+        changeSignal();
+      } else {
+        addOperador(btnMinus);
+      }
+      break;
+    case "NumpadMultiply":
+      addOperador(btnx);
+      break;
+    case "NumpadDivide":
+      addOperador(btnDivide);
+      break;
+    case "Enter":
+      equal();
+      break;
+    case "Backspace":
+      clearLastElement();
+      break;
+    case "Escape": // tecla delete
+      clearAllElements();
+      break;
+    case "Comma":
+      addVirgula();
+      break;
+    case "Digit1":
+      addBotaoNaCalculadora(btn1);
+      break;
+    case "Digit2":
+      addBotaoNaCalculadora(btn2);
+      break;
+    case "Digit3":
+      addBotaoNaCalculadora(btn3);
+      break;
+    case "Digit4":
+      addBotaoNaCalculadora(btn4);
+      break;
+    case "Digit5":
+      if (e.shiftKey) {
+        percent();
+      } else {
+        addBotaoNaCalculadora(btn5);
+      }
+      break;
+    case "Digit6":
+      addBotaoNaCalculadora(btn6);
+      break;
+    case "Digit7":
+      addBotaoNaCalculadora(btn7);
+      break;
+    case "Digit8":
+      if (e.shiftKey) {
+        addOperador(btnx);
+      } else {
+        addBotaoNaCalculadora(btn8);
+      }
+      break;
+    case "Digit9":
+      addBotaoNaCalculadora(btn9);
+      break;
+    case "Digit0":
+      addBotaoNaCalculadora(btn0);
+      break;
+    case "Minus":
+      if (e.shiftKey) {
+        changeSignal();
+      } else {
+        addOperador(btnMinus);
+      }
+      break;
+    case "Equal":
+      if (e.shiftKey) {
+        addOperador(btnPlus);
+      } else {
+        equal();
+      }
+      break;
+    default:
+      "error";
+  }
 });
