@@ -61,7 +61,7 @@ function divide(numberOne, numberTwo) {
     resultadoOperacao = numberOne / numberTwo;
     return (resultadoOperacao = Number(resultadoOperacao.toFixed(7)));
   } else {
-    return "XDXDXD";
+    return "Erro";
   }
 }
 
@@ -95,15 +95,15 @@ function addBotaoNaCalculadora(btn) {
 
 // funcao para calcular de acordo com o operador
 function addOperador(btn) {
-  let numberOneStringify;
+  // let numberOneStringify;
 
   if (numberOne !== undefined) {
     holder = Number(arr.join(""));
     numberTwo = holder;
     numberOne = operate(numberOne, numberTwo, operator);
 
-    numberOneStringify = numberOne.toString().slice(0, 19);
-    numberOne = Number(numberOneStringify);
+    // numberOneStringify = numberOne.toString().slice(0, 19);
+    // numberOne = numberOneStringify;
 
     calculationResult.textContent = numberOne;
     operator = btn.value;
@@ -117,7 +117,7 @@ function addOperador(btn) {
 }
 
 function equal() {
-  let resultadoStringify;
+  // let resultadoStringify;
 
   if (arr.length === 0) {
     calculationResult.textContent = resultado;
@@ -129,8 +129,8 @@ function equal() {
 
     resultado = operate(numberOne, numberTwo, operator);
 
-    resultadoStringify = resultado.toString().slice(0, 19);
-    resultado = Number(resultadoStringify);
+    // resultadoStringify = resultado.toString().slice(0, 19);
+    // resultado = resultadoStringify;
 
     calculationResult.textContent = resultado;
 
@@ -254,8 +254,12 @@ window.addEventListener("keydown", (e) => {
     case "NumpadAdd":
       addOperador(btnPlus);
       break;
-    case "NumpadSubtrackt":
-      addOperador(btnMinus);
+    case "NumpadSubtract":
+      if (e.shiftKey) {
+        changeSignal();
+      } else {
+        addOperador(btnMinus);
+      }
       break;
     case "NumpadMultiply":
       addOperador(btnx);
@@ -269,11 +273,63 @@ window.addEventListener("keydown", (e) => {
     case "Backspace":
       clearLastElement();
       break;
-    case "NumpadDecimal": // tecla delete
+    case "Escape": // tecla delete
       clearAllElements();
       break;
     case "Comma":
       addVirgula();
+      break;
+    case "Digit1":
+      addBotaoNaCalculadora(btn1);
+      break;
+    case "Digit2":
+      addBotaoNaCalculadora(btn2);
+      break;
+    case "Digit3":
+      addBotaoNaCalculadora(btn3);
+      break;
+    case "Digit4":
+      addBotaoNaCalculadora(btn4);
+      break;
+    case "Digit5":
+      if (e.shiftKey) {
+        percent();
+      } else {
+        addBotaoNaCalculadora(btn5);
+      }
+      break;
+    case "Digit6":
+      addBotaoNaCalculadora(btn6);
+      break;
+    case "Digit7":
+      addBotaoNaCalculadora(btn7);
+      break;
+    case "Digit8":
+      if (e.shiftKey) {
+        addOperador(btnx);
+      } else {
+        addBotaoNaCalculadora(btn8);
+      }
+      break;
+    case "Digit9":
+      addBotaoNaCalculadora(btn9);
+      break;
+    case "Digit0":
+      addBotaoNaCalculadora(btn0);
+      break;
+    case "Minus":
+      if (e.shiftKey) {
+        changeSignal();
+      } else {
+        addOperador(btnMinus);
+      }
+      break;
+    case "Equal":
+      if (e.shiftKey) {
+        addOperador(btnPlus);
+      } else {
+        equal();
+      }
       break;
     default:
       "error";
