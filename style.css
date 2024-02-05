@@ -5,12 +5,14 @@
 }
 
 body {
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: #807ece;
   font-family: "Rubik", sans-serif;
+  position: relative;
 }
 
 .calculator-container {
@@ -118,4 +120,20 @@ body {
 
 .purple-text {
   color: #6423cc;
+}
+
+#footer {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+#footer a {
+  text-decoration: none;
+  color: white;
 }
