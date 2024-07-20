@@ -36,7 +36,7 @@ body {
 
 .result-display {
   width: 288px;
-  height: 86px;
+  height: 100px;
   text-align: right;
   /* background-color: #292828; */
   color: #6b6b6b;
@@ -67,16 +67,32 @@ body {
   font-size: 36px;
 }
 
+.finalresult {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.operator {
+  font-size: 30px;
+  font-weight: bold;
+  width: 30px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .calculation-result {
   color: white;
   font-size: 22px;
   gap: 220px;
-  max-width: 288px;
+  width: 258px;
   height: 50px;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  align-items: end;
+  align-items: center;
 }
 
 .key-container {
