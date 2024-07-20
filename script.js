@@ -1,4 +1,5 @@
 const calculationsTracker = document.querySelector(".calculations-tracker");
+const operadorDisplay = document.querySelector(".operator");
 
 // botoes digitos
 const btn9 = document.querySelector("#btn-9");
@@ -107,12 +108,26 @@ function addOperador(btn) {
 
     calculationResult.textContent = numberOne;
     operator = btn.value;
+    if (operator == "*") {
+      operadorDisplay.innerHTML = "x";
+    } else if (operator == "/") {
+      operadorDisplay.innerHTML = "&divide";
+    } else {
+      operadorDisplay.innerHTML = operator;
+    }
     holder = numberTwo;
     arr.splice(0, arr.length);
   } else {
     numberOne = Number(arr.join(""));
     arr.splice(0, arr.length);
     operator = btn.value;
+    if (operator == "*") {
+      operadorDisplay.innerHTML = "x";
+    } else if (operator == "/") {
+      operadorDisplay.innerHTML = "&divide";
+    } else {
+      operadorDisplay.innerHTML = operator;
+    }
   }
 }
 
@@ -121,6 +136,7 @@ function equal() {
 
   if (arr.length === 0) {
     calculationResult.textContent = resultado;
+    operadorDisplay.innerHTML = "=";
   } else {
     numberTwo = Number(arr.join(""));
 
@@ -133,7 +149,7 @@ function equal() {
     // resultado = resultadoStringify;
 
     calculationResult.textContent = resultado;
-
+    operadorDisplay.innerHTML = "=";
     operator = "";
   }
 }
